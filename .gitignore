@@ -72,3 +72,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+# Assetts from the internet that are not to be shared
+Assets/AssetsFromInternet/All In One - Heightmaps/
+Assets/AssetsFromInternet/Rowlan/
+Assets/AssetsFromInternet/All In One - Heightmaps.meta
+Assets/AssetsFromInternet/Rowlan.meta
