@@ -17,8 +17,11 @@ public class FootstepSound : MonoBehaviour
     [Header("Character Movement")]
     public CharacterController controller;
 
+    [Header("Volume Control")]
+    [Range(0f, 1f)]  // Allows for a slider in Inspector to control the volume
+    public float stepVolume = 1f;  // Volume control (0 = silent, 1 = full volume)
+
     private float stepTimer;
-    private int lastPlayedIndex = -1;
 
     void Update()
     {
@@ -61,10 +64,11 @@ public class FootstepSound : MonoBehaviour
 
                 if (clips != null && clips.Length > 0)
                 {
-                    lastPlayedIndex = (lastPlayedIndex + 1) % clips.Length;
-                    AudioClip selectedClip = clips[lastPlayedIndex];
+                    // Randomly select a clip (no need for alternating logic anymore)
+                    AudioClip selectedClip = clips[Random.Range(0, clips.Length)];
 
                     footstepAudioSource.clip = selectedClip;
+                    footstepAudioSource.volume = stepVolume; // Apply the stepVolume here
                     footstepAudioSource.Play();
                 }
             }
@@ -119,5 +123,6 @@ public class TerrainFootstep
     public int terrainTextureIndex;
     public AudioClip[] footstepClips;
 }
+
 
 
