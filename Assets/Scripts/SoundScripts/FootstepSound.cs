@@ -64,7 +64,7 @@ public class FootstepSound : MonoBehaviour
 
                 if (clips != null && clips.Length > 0)
                 {
-                    // Randomly select a clip (no need for alternating logic anymore)
+                    // Randomly select a clip
                     AudioClip selectedClip = clips[Random.Range(0, clips.Length)];
 
                     footstepAudioSource.clip = selectedClip;
