@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class OptionsMenuButtonManager : MonoBehaviour
 {
-    [SerializeField] MainMenuManager.OptionsMenuButtons _buttonType;
+    [SerializeField] MenuManager.OptionsMenuButtons _buttonType;
 
     public void ButtonClicked()
     {
-        MainMenuManager._.OptionsMenuButtonClicked(_buttonType);
+        MenuManager._.OptionsMenuButtonClicked(_buttonType);
     }
 }

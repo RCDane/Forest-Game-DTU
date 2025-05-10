@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CreditsMenuButtonManager : MonoBehaviour
 {
-    [SerializeField] MainMenuManager.CreditsMenuButtons _buttonType;
+    [SerializeField] MenuManager.CreditsMenuButtons _buttonType;
 
     public void ButtonClicked()
     {
-        MainMenuManager._.CreditsMenuButtonClicked(_buttonType);
+        MenuManager._.CreditsMenuButtonClicked(_buttonType);
     }
 }
