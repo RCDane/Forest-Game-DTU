@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,15 +11,14 @@ public class MenuManager : MonoBehaviour
     // Flag to toggle debug mode
     [SerializeField] private bool _debugMode;
 
-    // Name of the scene/level which should start when clicking play
-    [SerializeField] private string _sceneToLoadAfterClickingPlay; // <--------- Should be removed once the menu works correctly
+    // Containers for Menu children components
     [SerializeField] GameObject _MenuContainer;
     [SerializeField] GameObject _MainMenuContainer;
     [SerializeField] GameObject _OptionsMenuContainer;
     [SerializeField] GameObject _CreditsMenuContainer;
     
     // Reference to player movement script to enable/disable movement
-    [SerializeField] private MonoBehaviour _playerMovementScript;
+    // [SerializeField] private MonoBehaviour _playerMovementScript;
 
     // Setup buttons for menu views
     public enum MainMenuButtons { play, options, credits, quit };
@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
     
     // Flag to check if game is paused, i.e. menu should be displayed
     private bool _isPaused = false;
-
+    
     private void DebugMessage(string message)
     {
         // Used for console debugging
@@ -58,48 +58,45 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        // TODO: 
-        // - Handle correct user input in VR setup
+        bool pausePressed = 
+            (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) ||
+            (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame);
 
-        // Check if Escape key is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (pausePressed)
         {
             if (_isPaused)
-            {
                 ResumeGame();
-            }
             else
-            {
                 PauseGame();
-            }
         }
     }
 
-    public void PauseGame()
+   public void PauseGame()
     {
         DebugMessage("Pause Game triggered");
-        
-        // Disable player movement
-        if (_playerMovementScript != null)
-            _playerMovementScript.enabled = false;
-        
+
+        // Show and unlock the cursor - Used for PC controller
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         // Open Main Menu and set pause to true
         OpenMenu(_MainMenuContainer);
         _isPaused = true;
     }
+
     public void ResumeGame()
     {
         DebugMessage("Resume Game triggered");
-        // SceneManager.LoadScene(_sceneToLoadAfterClickingPlay); // <--- In case of testing Main Menu scene
-        
-        // Enable player movement
-        if (_playerMovementScript != null)
-            _playerMovementScript.enabled = true;
+
+        // Hide and lock the cursor - Used for PC controller
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         // Close all Menus and set pause to false
         CloseAllMenus();
         _isPaused = false;
     }
+
 
     public void OpenMenu(GameObject menuToOpen)
     {
