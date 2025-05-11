@@ -25,6 +25,9 @@ public class CameraController : MonoBehaviour
     Texture2D DisplayTexture;
     //Material displayMaterial;
 
+    [SerializeField]
+    private AudioClip cameraTriggerSound;
+
     bool isPressed = false;
     bool wasPressed = false;
 
@@ -91,6 +94,8 @@ public class CameraController : MonoBehaviour
             if (photoRenderer != null)
             {
                 photoRenderer.material = new Material(photoRenderer.material); // Avoid modifying shared material
+                AudioManagerScript.Instance.PlaySFX(cameraTriggerSound);
+    
                 photoRenderer.material.SetTexture("_BaseMap", DisplayTexture);
                 photoRenderer.material.SetTextureScale("_BaseMap", new Vector2(-1, -1));
                 photoRenderer.material.SetTextureOffset("_BaseMap", new Vector2(1, 1));
