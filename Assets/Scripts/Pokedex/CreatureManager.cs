@@ -16,6 +16,7 @@ public class CreatureManager : MonoBehaviour
             if (CheckIfInsideCamera(creature,cam))
             {
                 pokedexManager.PicturetakenOff(creature);
+                print("Picture taken");
                 return true;
             }
         }

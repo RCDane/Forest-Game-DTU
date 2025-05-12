@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 758663237855060001}
   - component: {fileID: 7466597205539401289}
   - component: {fileID: 8444099782574645295}
+  - component: {fileID: 8470224530145173442}
   m_Layer: 0
   m_Name: Deer_001
   m_TagString: Untagged
@@ -521,6 +522,21 @@ MonoBehaviour:
   runAnim: Deer_001_run
   idleAnim: Deer_001_idle
   grazeAnim: Deer_001_idle
+--- !u!114 &8470224530145173442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297572987385538842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eac46b38b07344a9fc8f7941c2f2a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1.12
+  offset: {x: 0, y: 0.91, z: 0}
+  creatureName: Deer
 --- !u!1 &4544820588481158452
 GameObject:
   m_ObjectHideFlags: 0

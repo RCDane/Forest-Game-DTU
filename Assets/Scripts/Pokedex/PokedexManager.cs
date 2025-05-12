@@ -99,7 +99,7 @@ public class PokedexManager : MonoBehaviour
             Camera cam = Camera.main;
             Vector3 direction = (transform.position - cam.transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            pokedexCanvasObj.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
         }
 

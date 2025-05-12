@@ -8,15 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Old/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Old/RasmusTestScene.unity
     guid: 832060420b55f874691f2c9ed325c988
   - enabled: 0
     path: Assets/Scenes/Old/OldGameplayScene.unity
     guid: 67727c082eafcc5459fe24837f340cbc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Optimized.unity
     guid: 209bf6e478da073439cde3879a2c2a2c
+  - enabled: 1
+    path: Assets/Scenes/Emanuele/EmanueleSimplified.unity
+    guid: 2672e75de724b6f46b7793740eb8bd6c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a7e44845a86f0f649b02129facd9dfe7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
