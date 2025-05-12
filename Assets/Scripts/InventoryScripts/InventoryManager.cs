@@ -226,7 +226,7 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in inventory)
         {
             GameObject btnObj = Instantiate(inventoryButtonPrefab, inventoryContentPanel);
-            btnObj.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
+            //btnObj.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
 
             btnObj.GetComponent<Button>().onClick.AddListener(() => SpawnItem(item));
 
