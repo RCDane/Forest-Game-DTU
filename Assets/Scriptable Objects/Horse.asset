@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d542b293f59abb43afeacbf4fa13f0c, type: 3}
   m_Name: Horse
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Id: 
+  Name: Horse
+  Description: Runs through valleys of the planet.
+  Id: Horse

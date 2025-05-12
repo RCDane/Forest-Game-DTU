@@ -44,6 +44,7 @@ public class CreatureManager : MonoBehaviour
         Vector3 direction = (creature.transform.position + creature.Offset) - cameraPosition;
         if (Physics.SphereCast(cameraPosition, creature.Radius / 2.0f, direction, out hit, Vector3.Distance(cameraPosition, creature.transform.position + creature.Offset)))
         {
+            print(hit.transform.name);
             // Check if the hit object is not the creature itself
             if (hit.collider.gameObject != creature.gameObject)
             {

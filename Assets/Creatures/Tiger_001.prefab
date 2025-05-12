@@ -62,6 +62,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8739604ff156c91408e3f6352de03dbc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8330491439579233235}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8739604ff156c91408e3f6352de03dbc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1918157008385141546}
   m_SourcePrefab: {fileID: 100100000, guid: 8739604ff156c91408e3f6352de03dbc, type: 3}
 --- !u!1 &4134471013886137304 stripped
 GameObject:
@@ -111,3 +114,18 @@ MonoBehaviour:
   runAnim: Tiger_001_run
   idleAnim: Tiger_001_idle
   grazeAnim: Tiger_001_idle_rare
+--- !u!114 &1918157008385141546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134471013886137304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eac46b38b07344a9fc8f7941c2f2a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  offset: {x: 0, y: 0.7, z: 0}
+  creatureName: Tiger
