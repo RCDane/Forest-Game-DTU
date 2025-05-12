@@ -35,6 +35,11 @@ public class CameraController : MonoBehaviour
     
     Animator animator;
 
+    [SerializeField]
+    CreatureManager creatureManager;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -94,11 +99,14 @@ public class CameraController : MonoBehaviour
             if (photoRenderer != null)
             {
                 photoRenderer.material = new Material(photoRenderer.material); // Avoid modifying shared material
-                AudioManagerScript.Instance.PlaySFX(cameraTriggerSound);
-    
+                //AudioManagerScript.Instance.PlaySFX(cameraTriggerSound);
+
+                
+
                 photoRenderer.material.SetTexture("_BaseMap", DisplayTexture);
                 photoRenderer.material.SetTextureScale("_BaseMap", new Vector2(-1, -1));
                 photoRenderer.material.SetTextureOffset("_BaseMap", new Vector2(1, 1));
+                creatureManager.TryTakePicture(camera);
             }
             else
             {
@@ -158,4 +166,9 @@ public class CameraController : MonoBehaviour
     {
         Instantiate(camera);
     }
+
+
+
+
+
 }
