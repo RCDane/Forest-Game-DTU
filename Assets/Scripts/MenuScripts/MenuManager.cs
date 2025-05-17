@@ -17,6 +17,16 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject _OptionsMenuContainer;
     [SerializeField] GameObject _CreditsMenuContainer;
     
+    [SerializeField] private Transform _cameraTransform; // Assign Main Camera (from XR Rig)
+    [SerializeField] private float _menuDistance = 2f;   // Distance in front of player
+    private Vector3 _initialMenuPosition;
+    private Quaternion _initialMenuRotation;
+
+    private bool _hasPositionedMenuOnce = false;
+
+    [SerializeField] private InputActionAsset actions;  // Input Actions asset
+    private InputAction pauseAction;                    // Reference to a specific action
+
     // Reference to player movement script to enable/disable movement
     // [SerializeField] private MonoBehaviour _playerMovementScript;
 
@@ -39,7 +49,7 @@ public class MenuManager : MonoBehaviour
 
     public void Awake()
     {
-        // Initialize MenuManager singleton for references between scripts
+        // Initialize MenuManager singleton
         if (_ == null)
         {
             _ = this;
@@ -48,41 +58,70 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogError("More than 1 MenuManager detected in the scene");
         }
+
+        // Find and assign the pause action
+        pauseAction = actions.FindAction("XRI Left Interaction/Scale Toggle"); // Joystick Click       
+
+        if (pauseAction != null)
+        {
+            pauseAction.performed += ctx => TogglePause(); // Attach event
+            pauseAction.Enable(); // Enable the input
+        }
+        else
+        {
+            Debug.LogWarning("Pause action not found in InputActionAsset.");
+        }
     }
 
     public void Start()
     {
-        // Pause the game and display the Main Meny upon application start
+        if (_cameraTransform == null && Camera.main != null)
+            _cameraTransform = Camera.main.transform;
+
+        // Store initial static menu position
+        _initialMenuPosition = _MenuContainer.transform.position;
+        _initialMenuRotation = _MenuContainer.transform.rotation;
+
         PauseGame();
     }
 
-    void Update()
-    {
-        bool pausePressed = 
-            (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) ||
-            (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame);
 
-        if (pausePressed)
-        {
-            if (_isPaused)
-                ResumeGame();
-            else
-                PauseGame();
-        }
+    private void TogglePause()
+    {
+        DebugMessage("TogglePause!!!");
+        if (_isPaused)
+            ResumeGame();
+        else
+            PauseGame();
     }
 
-   public void PauseGame()
+    private void UpdateMenuPosition()
+    {
+        if (_cameraTransform == null) return;
+
+        Vector3 forward = _cameraTransform.forward;
+        Vector3 targetPosition = _cameraTransform.position + forward * _menuDistance;
+
+        _MenuContainer.transform.position = targetPosition;
+        _MenuContainer.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+        DebugMessage("MenuContainer updated: " + _MenuContainer.transform.position.ToString());
+    }
+
+    public void PauseGame()
     {
         DebugMessage("Pause Game triggered");
 
-        // Show and unlock the cursor - Used for PC controller
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // Open Main Menu and set pause to true
         OpenMenu(_MainMenuContainer);
         _isPaused = true;
+
+        // Ensure menu stays in its original place
+        _MenuContainer.transform.position = _initialMenuPosition;
+        _MenuContainer.transform.rotation = _initialMenuRotation;
     }
+
 
     public void ResumeGame()
     {
