@@ -12,9 +12,8 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip backgroundMusic; // For gameplay
     public AudioClip menuMusic;       // For main menu
     public AudioClip cameraClick;
-    public AudioClip cameraPrint;
-    public AudioClip creature1sound;
-    public AudioClip creature2sound;
+    public AudioClip button1click;
+    
 
     [Header("Ambient Sounds")]
     [SerializeField] private GameObject ambientSounds;
@@ -37,7 +36,9 @@ public class AudioManagerScript : MonoBehaviour
     private void Start()
     {
         // Start menu music on launch
-        SwitchToMenuMusic();
+        //SwitchToMenuMusic();
+        // Start gameplay music on launch
+        SwitchToGameplayMusic();
     }
 
     // Play a one-shot sound effect
@@ -145,7 +146,7 @@ public class AudioManagerScript : MonoBehaviour
 
 
     --------------------------------------------------------------------
-    //Other example 
+    //(OLD DO NOT USE THIS)
 
     using UnityEngine;
 

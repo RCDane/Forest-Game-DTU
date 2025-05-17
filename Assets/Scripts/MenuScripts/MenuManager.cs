@@ -167,6 +167,8 @@ public class MenuManager : MonoBehaviour
 
     public void MainMenuButtonClicked(MainMenuButtons buttonClicked)
     {
+
+        AudioManagerScript.Instance.PlaySFX(AudioManagerScript.Instance.button1click);
         // Handles Main Menu button logic
         DebugMessage("Main Meny Button Clicked: " + buttonClicked.ToString());
         switch (buttonClicked)
