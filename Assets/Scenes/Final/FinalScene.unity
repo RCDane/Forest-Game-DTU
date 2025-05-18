@@ -7893,6 +7893,10 @@ PrefabInstance:
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 1687269571}
+    - target: {fileID: 6059723145909722767, guid: 3c02f7ff09a1e774cbee4f1ee1240ab5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7378401889173422949, guid: 3c02f7ff09a1e774cbee4f1ee1240ab5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
