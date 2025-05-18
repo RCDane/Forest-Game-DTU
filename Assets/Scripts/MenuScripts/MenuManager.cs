@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     // Containers for Menu children components
     [SerializeField] GameObject _MenuContainer;
     [SerializeField] GameObject _MainMenuContainer;
-    [SerializeField] GameObject _OptionsMenuContainer;
+    [SerializeField] GameObject _ControlsMenuContainer;
     [SerializeField] GameObject _CreditsMenuContainer;
     
     [SerializeField] private Transform _cameraTransform; // Assign Main Camera (from XR Rig)
@@ -31,8 +31,8 @@ public class MenuManager : MonoBehaviour
     // [SerializeField] private MonoBehaviour _playerMovementScript;
 
     // Setup buttons for menu views
-    public enum MainMenuButtons { play, options, credits, quit };
-    public enum OptionsMenuButtons { back };
+    public enum MainMenuButtons { play, controls, credits, quit };
+    public enum ControlsMenuButtons { back };
     public enum CreditsMenuButtons { back };
     
     // Flag to check if game is paused, i.e. menu should be displayed
@@ -143,15 +143,15 @@ public class MenuManager : MonoBehaviour
         _MenuContainer.SetActive(_MenuContainer);
         _MainMenuContainer.SetActive(menuToOpen == _MainMenuContainer);
         _CreditsMenuContainer.SetActive(menuToOpen == _CreditsMenuContainer);
-        _OptionsMenuContainer.SetActive(menuToOpen == _OptionsMenuContainer);
+        _ControlsMenuContainer.SetActive(menuToOpen == _ControlsMenuContainer);
     }
     public void OpenMainMenu()
     {
         OpenMenu(_MainMenuContainer);
     }
-    public void OpenOptionsMenu()
+    public void OpenControlsMenu()
     {
-        OpenMenu(_OptionsMenuContainer);
+        OpenMenu(_ControlsMenuContainer);
     }
     public void OpenCreditsMenu()
     {
@@ -161,7 +161,7 @@ public class MenuManager : MonoBehaviour
     {
         _MenuContainer.SetActive(false);
         _MainMenuContainer.SetActive(false);
-        _OptionsMenuContainer.SetActive(false);
+        _ControlsMenuContainer.SetActive(false);
         _CreditsMenuContainer.SetActive(false);
     }
 
@@ -176,8 +176,8 @@ public class MenuManager : MonoBehaviour
             case MainMenuButtons.play:
                 PlayClicked();
                 break;
-            case MainMenuButtons.options:
-                OpenOptionsMenu();
+            case MainMenuButtons.controls:
+                OpenControlsMenu();
                 break;
             case MainMenuButtons.credits:
                 OpenCreditsMenu();
@@ -190,13 +190,13 @@ public class MenuManager : MonoBehaviour
                 break;
         }
     }
-    public void OptionsMenuButtonClicked(OptionsMenuButtons buttonClicked)
+    public void ControlsMenuButtonClicked(ControlsMenuButtons buttonClicked)
     {
-        // Handles Options Menu button logic
-        DebugMessage("Options Menu Button Clicked: " + buttonClicked.ToString());
+        // Handles Controls Menu button logic
+        DebugMessage("Controls Menu Button Clicked: " + buttonClicked.ToString());
         switch (buttonClicked)
         {
-            case OptionsMenuButtons.back:
+            case ControlsMenuButtons.back:
                 OpenMainMenu();
                 break;
             default:
